@@ -87,3 +87,69 @@ Sistema-de-Delivery/                      # Pasta raiz do projeto
 ├── README.md                          # Documentação do projeto
 └── .gitignore                         # Ignora arquivos desnecessários no Git
 ```
+<h2 id="colab" align="center" style="font-weight: bold; font-size: 2rem">Colaboradores</h2>
+  <div align="center">
+    <table>
+      <tr>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/144806270?v=4" width="100px;" alt="alisson"/><br>
+            <sub>
+              <a href="https://github.com/alissonricarte"><b>Alisson Ricarte</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/101362462?v=4" width="100px;" alt="mateusK"/><br>
+            <sub>
+              <a href="https://github.com/mateuskaynan"><b>Mateus Kaynan</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/156232385?v=4" width="100px;" alt="mateus"/><br>
+            <sub>
+              <a href="https://github.com/mateussspinheiro"><b>Mateus Pinheiro</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/185148834?v=4" width="100px;" alt="marcelo"/><br>
+            <sub>
+              <a href="https://github.com/MarceloHmarques"><b>Marcelo Marques</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/166541231?v=4" width="100px;" alt="sara"/><br>
+            <sub>
+              <a href="https://github.com/saraVitoria0"><b>Sara Vitoria</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/162624679?v=4" width="100px;" alt="daniel"/><br>
+            <sub>
+              <a href="https://github.com/anavitoriaq"><b>Ana Vitória</b></a>
+            </sub>
+          </a>
+        </td>
+        <td align="center">
+          <a href="#">
+            <img src="https://avatars.githubusercontent.com/u/143735022?v" width="100px;" alt="laura"/><br>
+            <sub>
+              <a href="https://github.com/lauragoncalvesf"><b>Laura Gonçalves</b></a>
+            </sub>
+          </a>
+        </td>
+    </table>
+   <span style="font-weight: bold;">Equipe Sistema de Delivery - Obrigado por utilizar nosso sistema!</span>
+  </div>
+</div>
+
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=110&color=F9F9F4&section=footer&reversal=false"/>
