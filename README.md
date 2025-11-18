@@ -67,6 +67,11 @@ Sistema-de-Delivery/                      # Pasta raiz do projeto
 │   │   │   │   │   ├── Pessoa.java    # Classe mãe para usuários
 │   │   │   │   │   └── Produto.java   # Classe mãe para produtos
 │   │   │   │   │
+│   │   │   ├── interfaces/            
+│   │   │   │   ├── IImprimivel.java   # Interface para exibir detalhes
+│   │   │   │   ├── ICadastravel.java  # Interface para controllers
+│   │   │   │   └── ITaxavel.java      # Interface para produtos
+│   │   │   │   │
 │   │   │   │   ├── usuarios/          # Classes filhas de Pessoa
 │   │   │   │   │   ├── Cliente.java   # Cliente do delivery
 │   │   │   │   │   └── Entregador.java# Entregador do delivery
@@ -76,13 +81,6 @@ Sistema-de-Delivery/                      # Pasta raiz do projeto
 │   │   │   │   │   └── Bebida.java    # Representa bebidas
 │   │   │   │   │
 │   │   │   │   └── Pedido.java        # Representa um pedido completo
-│   │   │   │
-│   │   │   ├── utils/                 # Funções auxiliares
-│   │   │   │   └── InputHelper.java   # Validação e leitura de dados
-│   │   │
-│   │   └── resources/                 # Arquivos externos (ex: .txt) caso usados
-│   │
-│   └── test/                          # Testes unitários (opcional)
 │
 ├── README.md                          # Documentação do projeto
 └── .gitignore                         # Ignora arquivos desnecessários no Git
