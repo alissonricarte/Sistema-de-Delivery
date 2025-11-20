@@ -22,7 +22,7 @@ public class Entregador extends Pessoa {
     @Override
     public void exibirDados() {
         System.out.println("===ENTREGADOR===");
-        InputHelper.exibirDadosUlt(this);
+        InputHelper.exibirDadosPessoas(this);
         System.out.println("Placa do veiculo : "+getPalcaVeiculo());
     }
 }

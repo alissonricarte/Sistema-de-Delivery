@@ -22,7 +22,7 @@ public class Cliente extends Pessoa {
     @Override
     public void exibirDados() {
         System.out.println("===CLIENTE===");
-        InputHelper.exibirDadosUlt(this);
+        InputHelper.exibirDadosPessoas(this);
         System.out.println("Endereço: "+getEndereco());
     }
 }
