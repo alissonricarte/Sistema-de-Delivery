@@ -1,8 +1,11 @@
 package main.java.models.abstratos;
 
+import main.java.Enums.CategoriaProduto;
+
 public abstract class Produto {
     private String nome;
     private double preco;
+    private CategoriaProduto categoria;
 
     public Produto(String nome, double preco){
         this.nome = nome;
@@ -23,4 +26,9 @@ public abstract class Produto {
     }
 
     public abstract void exibirDetalhes();
+
+    public CategoriaProduto getCategoria() { return categoria; }
+
+    public void setCategoria(CategoriaProduto categoria) { this.categoria = categoria; }
 }
+

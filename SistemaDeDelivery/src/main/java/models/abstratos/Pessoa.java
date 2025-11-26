@@ -39,4 +39,10 @@ public abstract class Pessoa {
     }
 
     public abstract void exibirDados();
+
+    protected boolean validarDadosBasicos() {
+        return nome != null && !nome.trim().isEmpty() &&
+                cpf != null && cpf.matches("\\d{11}") &&
+                email != null && email.contains("@");
+    }
 }

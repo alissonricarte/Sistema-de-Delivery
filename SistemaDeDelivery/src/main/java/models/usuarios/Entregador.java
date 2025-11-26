@@ -12,8 +12,8 @@ public class Entregador extends Pessoa {
         this.palcaVeiculo = palcaVeiculo;
     }
 
-    public String getPalcaVeiculo() {
-        return palcaVeiculo;
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
     }
     public void setPalcaVeiculo(String palcaVeiculo) {
         this.palcaVeiculo = palcaVeiculo;
