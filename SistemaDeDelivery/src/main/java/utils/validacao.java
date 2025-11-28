@@ -30,22 +30,17 @@ public class validacao {
             int resto = soma % 11;
             int digito1 = (resto < 2) ? 0 : 11 - resto;
 
-            // Verifica o primeiro dígito
             if (digito1 != Character.getNumericValue(cpf.charAt(9))) {
                 return false;
             }
-
-            // Calcula o segundo dígito verificador
             soma = 0;
             for (int i = 0; i < 10; i++) {
                 int digito = Character.getNumericValue(cpf.charAt(i));
                 soma += digito * (11 - i);
             }
-
             resto = soma % 11;
             int digito2 = (resto < 2) ? 0 : 11 - resto;
 
-            // Verifica o segundo dígito
             return digito2 == Character.getNumericValue(cpf.charAt(10));
 
         } catch (NumberFormatException e) {
@@ -53,9 +48,7 @@ public class validacao {
         }
     }
     public static boolean validarEmail(String email) {
-
     }
     public static boolean validarTelefone(String telefone){
-
     }
 }
