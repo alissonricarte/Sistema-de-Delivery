@@ -1,17 +1,38 @@
 package main.java.app;
 
-public class Main {
-    public static void main(String[] args) {
-        // Inicialização do sistema
-        UsuarioController usuarioController = new UsuarioController();
-        PedidoController pedidoController = new PedidoController();
-        ProdutoController produtoController = new ProdutoController();
+import main.java.controllers.UsuarioController;
+import main.java.controllers.PedidoController;
+import main.java.controllers.ProdutoController;
+import main.java.utils.InputHelper;
 
-        // Menu principal ou interface
+public class Main {
+    private static UsuarioController usuarioController = new UsuarioController();
+    private static PedidoController pedidoController = new PedidoController();
+    private static ProdutoController produtoController = new ProdutoController();
+
+    public static void main(String[] args) {
         iniciarSistema();
     }
 
     private static void iniciarSistema() {
-        // Lógica do menu/interação com usuário
+        int opcao;
+
+        do {
+            System.out.println("\n=== SISTEMA DE DELIVERY ===");
+            System.out.println("1 - Gerenciar Usuários");
+            System.out.println("2 - Gerenciar Pedidos");
+            System.out.println("3 - Gerenciar Produtos");
+            System.out.println("0 - Sair");
+
+            opcao = InputHelper.lerInt("Escolha uma opção: ");
+
+            switch (opcao) {
+                case 1 -> usuarioController.menu();
+                case 2 -> pedidoController.menu();
+                case 3 -> produtoController.menu();
+                case 0 -> System.out.println("Saindo do sistema...");
+                default -> System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
     }
 }
