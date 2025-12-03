@@ -37,6 +37,10 @@ public class Entregador extends Pessoa {
             throw new IllegalArgumentException("A placa do veículo não pode ser vazia!");
         }
 
+        if(!placaVeiculo.matches("[A-Z]{3}-?\\d{4}") && !placaVeiculo.matches("[A-Z]{3}\\d[A-Z]\\d{2}")) {
+            throw new IllegalArgumentException("Placa de veículo inválida!");
+        }
+
         this.placaVeiculo = placaVeiculo.toUpperCase().trim();
     }
 
@@ -47,14 +51,4 @@ public class Entregador extends Pessoa {
         System.out.println("Placa do Veículo: " + placaVeiculo);
     }
 
-    @Override
-    public String toString() {
-        return "Entregador {" +
-                "nome='" + getNome() + '\'' +
-                ", cpf='" + getCpf() + '\'' +
-                ", telefone='" + getTelefone() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", placaVeiculo='" + placaVeiculo + '\'' +
-                '}';
-    }
 }

@@ -5,8 +5,8 @@ public abstract class Produto {
     private double preco;
 
     public Produto(String nome, double preco){
-        this.nome = nome;
-        this.preco = preco;
+        setNome(nome);
+        setPreco(preco);
     }
 
     public String getNome() {
@@ -18,10 +18,14 @@ public abstract class Produto {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null || nome.trim().isEmpty())
+            throw new IllegalArgumentException("Nome do produto não pode ser vazio.");
+        this.nome = nome.trim();
     }
 
     public void setPreco(double preco) {
+        if (preco <= 0)
+            throw new IllegalArgumentException("Preço deve ser maior que zero.");
         this.preco = preco;
     }
 

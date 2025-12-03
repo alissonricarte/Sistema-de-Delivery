@@ -8,20 +8,22 @@ public class Comida extends Produto {
 
     public Comida(String nome, double preco, String tipo){
         super(nome, preco);
-        this.tipo = tipo;
+        setTipo(tipo);
     }
 
     public String getTipo() {
         return tipo;
     }
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if (tipo == null || tipo.trim().isEmpty())
+            throw new IllegalArgumentException("Tipo não pode ser vazio.");
+        this.tipo = tipo.trim();
     }
 
     @Override
     public void exibirDetalhes() {
         System.out.println("===Comida===");
-        InputHelper.exbirDadosProduto(this);
+        InputHelper.exibirDadosProduto(this);
         System.out.println("Tipo: "+getTipo());
     }
 }

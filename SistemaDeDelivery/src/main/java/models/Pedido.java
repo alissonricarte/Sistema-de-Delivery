@@ -8,7 +8,10 @@ public class Pedido {
     private String descricao;
     private List<String> itens = new ArrayList<>();
 
-    public Pedido() {
+    public Pedido(String descricao) {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição do pedido não pode ser vazia.");
+        }
         this.descricao = descricao;
     }
 
@@ -17,7 +20,10 @@ public class Pedido {
     }
 
     public void adicionarItem(String item) {
-        itens.add(item);
+        if( item == null) {
+            throw new IllegalArgumentException("Item não pode ser nulo.");
+        }
+        itens.add(item.trim());
     }
 
     public List<String> getItens() {

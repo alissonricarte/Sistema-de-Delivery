@@ -9,14 +9,16 @@ public class Cliente extends Pessoa {
 
     public Cliente(String nome, String cpf, String telefone,String email, String endereco){
         super(nome, cpf, telefone, email);
-        this.endereco = endereco;
+        setEndereco(endereco);
     }
 
     public String getEndereco() {
         return endereco;
     }
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        if( endereco == null || endereco.trim().isEmpty())
+            throw new IllegalArgumentException("Endereço não pode ser vazio.");
+        this.endereco = endereco.trim();
     }
 
     @Override
