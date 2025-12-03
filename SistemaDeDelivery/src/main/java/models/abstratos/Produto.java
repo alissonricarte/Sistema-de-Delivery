@@ -21,9 +21,15 @@ public abstract class Produto {
         this.nome = nome;
     }
 
+    
     public void setPreco(double preco) {
+    if (preco > 0) {
         this.preco = preco;
+    } else {
+        System.out.println("Preço inválido! O valor não pode ser negativo.");
     }
+}
+
 
     public abstract void exibirDetalhes();
 }

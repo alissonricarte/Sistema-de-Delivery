@@ -35,11 +35,14 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
     public void setEmail(String email) {
+    if (email != null && email.contains("@")) {
         this.email = email;
+    } else {
+        System.out.println("E-mail inválido!");
+    } 
+    
     }
-
     public abstract void exibirDados();
-
     protected boolean validarDadosBasicos() {
         return nome != null && !nome.trim().isEmpty() &&
                 cpf != null && cpf.matches("\\d{11}") &&
