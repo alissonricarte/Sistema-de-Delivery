@@ -41,7 +41,7 @@ public class InputHelper {
         System.out.println("Email: " + p.getEmail());
     }
 
-    public static void exbirDadosProduto(Produto p) {
+    public static void exibirDadosProduto(Produto p) {
         System.out.println("Nome: " + p.getNome());
         System.out.println("Preço: R$ " + String.format("%.2f", p.getPreco()));
     }

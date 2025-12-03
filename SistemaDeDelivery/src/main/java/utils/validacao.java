@@ -1,6 +1,7 @@
 package main.java.utils;
 
-public class validacao {
+public class Validacao {
+    
     public static boolean validarCPF(String cpf) {
         if (cpf == null) {
             return false;
@@ -47,8 +48,17 @@ public class validacao {
             return false;
         }
     }
+
     public static boolean validarEmail(String email) {
+        return email != null && email.matches("^[\\w\\.-]+@[\\w\\.-]+\\.[a-zA-Z]{2,}$");
     }
-    public static boolean validarTelefone(String telefone){
+
+    public static boolean validarTelefone(String telefone) {
+        if (telefone == null) return false;
+
+        telefone = telefone.replaceAll("[^0-9]", "");
+
+        return telefone.length() >= 10 && telefone.length() <= 11;
     }
+
 }
