@@ -47,7 +47,6 @@ public abstract class Pessoa {
             throw new IllegalArgumentException("Email inválido.");
         this.email = email;
     }
-
+    
     public abstract void exibirDados();
-
 }

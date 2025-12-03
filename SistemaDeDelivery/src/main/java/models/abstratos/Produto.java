@@ -23,6 +23,7 @@ public abstract class Produto {
         this.nome = nome.trim();
     }
 
+    
     public void setPreco(double preco) {
         if (preco <= 0)
             throw new IllegalArgumentException("Preço deve ser maior que zero.");
