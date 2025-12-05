@@ -11,7 +11,8 @@ public class Main {
     private static ProdutoController produtoController = new ProdutoController();
 
     public static void main(String[] args) {
-        iniciarSistema();
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.iniciar();
     }
 
     private static void iniciarSistema() {
