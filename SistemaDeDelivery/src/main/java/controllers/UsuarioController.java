@@ -1,19 +1,22 @@
 package main.java.controllers;
-import models.Usuario;
-import utils.InputHelper;
+
+import main.java.models.usuarios.Cliente;
+import main.java.utils.InputHelper;
+import main.java.utils.Validacao;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioController {
 
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Cliente> clientes = new ArrayList<>();
 
     public void menu() {
         int op;
         do {
-            System.out.println("\n--- Usuários ---");
-            System.out.println("1 - Cadastrar");
-            System.out.println("2 - Listar");
+            System.out.println("\n--- Clientes ---");
+            System.out.println("1 - Cadastrar Cliente");
+            System.out.println("2 - Listar Clientes");
             System.out.println("0 - Voltar");
 
             op = InputHelper.lerInt("Escolha: ");
@@ -29,21 +32,47 @@ public class UsuarioController {
     }
 
     private void cadastrar() {
-        String nome = InputHelper.lerString("Nome: ");
-        String email = InputHelper.lerString("Email: ");
+        try {
+            String nome = InputHelper.lerString("Nome: ");
+            String cpf;
 
-        Usuario u = new Usuario(nome, email);
-        usuarios.add(u);
+            do {
+                cpf = InputHelper.lerString("CPF: ");
+                if (!Validacao.validarCPF(cpf))
+                    System.out.println("CPF inválido. Tente novamente.");
+            } while (!Validacao.validarCPF(cpf));
 
-        System.out.println("Usuário cadastrado!");
+            String telefone;
+            do {
+                telefone = InputHelper.lerString("Telefone: ");
+                if (!Validacao.validarTelefone(telefone))
+                    System.out.println("Telefone inválido. Tente novamente.");
+            } while (!Validacao.validarTelefone(telefone));
+
+            String email;
+            do {
+                email = InputHelper.lerString("Email: ");
+                if (!Validacao.validarEmail(email))
+                    System.out.println("Email inválido. Tente novamente.");
+            } while (!Validacao.validarEmail(email));
+            String endereco = InputHelper.lerString("Endereço: ");
+
+            Cliente c = new Cliente(nome, cpf, telefone, email, endereco);
+            clientes.add(c);
+
+            System.out.println("Cliente cadastrado!");
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar cliente: " + e.getMessage());
+        }
     }
 
     private void listar() {
-        if (usuarios.isEmpty()) {
-            System.out.println("Nenhum usuário cadastrado.");
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
             return;
         }
 
-        usuarios.forEach(System.out::println);
+        System.out.println("\n--- Lista de Clientes ---");
+        clientes.forEach(System.out::println);
     }
 }

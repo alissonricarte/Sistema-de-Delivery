@@ -1,7 +1,7 @@
 package main.java.controllers;
 
-import models.Pedido;
-import utils.InputHelper;
+import main.java.models.Pedido;
+import main.java.utils.InputHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,8 @@ public class PedidoController {
             System.out.println("Nenhum pedido cadastrado.");
             return;
         }
+
+        System.out.println("\n--- Lista de Pedidos ---");
         pedidos.forEach(System.out::println);
     }
 }

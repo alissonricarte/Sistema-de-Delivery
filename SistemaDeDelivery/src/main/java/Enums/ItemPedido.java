@@ -1,6 +1,6 @@
-package main.java.models.pedidos;
+package main.java.enums;
 
-import main.java.models.produtos.Produto;
+import main.java.models.abstratos.Produto;
 
 public class ItemPedido {
 
@@ -37,10 +37,6 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    /**
-     * Retorna o subtotal do item:
-     * preço do produto × quantidade
-     */
     public double getSubtotal() {
         return produto.getPreco() * quantidade;
     }
