@@ -1,4 +1,4 @@
-package main.java.enums;
+package main.java.Enums;
 
 import main.java.models.abstratos.Produto;
 
