@@ -14,24 +14,27 @@ public class UsuarioController {
     public void menu() {
         int op;
         do {
-            System.out.println("\n--- Clientes ---");
-            System.out.println("1 - Cadastrar Cliente");
-            System.out.println("2 - Listar Clientes");
-            System.out.println("0 - Voltar");
-
-            op = InputHelper.lerInt("Escolha: ");
+            System.out.println("""
+                    --- Clientes ---
+                    1 - Cadastrar Cliente
+                    2 - Listar Cliente
+                    3 - Apagar Cliente
+                    
+                    0 - Voltar
+                    """);
+            op = InputHelper.lerInt("escolha:");
 
             switch (op) {
                 case 1 -> cadastrar();
                 case 2 -> listar();
-                case 0 -> {}
+                case 3 -> excluir();
                 default -> System.out.println("Opção inválida!");
             }
 
         } while (op != 0);
     }
 
-    private void cadastrar() {
+    public void cadastrar() {
         try {
             String nome = InputHelper.lerString("Nome: ");
             String cpf;
@@ -66,7 +69,7 @@ public class UsuarioController {
         }
     }
 
-    private void listar() {
+    public void listar() {
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
             return;
@@ -74,5 +77,16 @@ public class UsuarioController {
 
         System.out.println("\n--- Lista de Clientes ---");
         clientes.forEach(System.out::println);
+    }
+    public void excluir() {
+        String cpf = InputHelper.lerString("CPF do cliente a remover: ");
+        if (excluirCliente(cpf))
+            System.out.println("Cliente removido!");
+        else
+            System.out.println("Cliente não encontrado!");
+    }
+
+    public boolean excluirCliente(String cpf) {
+        return clientes.removeIf(c -> c.getCpf().equals(cpf));
     }
 }
