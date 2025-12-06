@@ -91,7 +91,7 @@ public class ProdutoController {
         }
     }
 
-    private void listar() {
+    public void listar() {
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado.");
             return;
