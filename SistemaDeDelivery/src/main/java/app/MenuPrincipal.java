@@ -9,13 +9,13 @@ public class MenuPrincipal {
 
     UsuarioController usuarioController = new UsuarioController();
     ProdutoController produtoController = new ProdutoController();
-    PedidoController pedidoController = new PedidoController(produtoController);
+    PedidoController pedidoController = new PedidoController(produtoController, usuarioController);
 
     public void iniciar() {
         int opcao;
         do {
             System.out.println("""
-                    ========= MENU PRINCIPAL =========
+                    ========= Sistema de Delivery =========
                     1. Gerenciar Usuários
                     2. Gerenciar Produtos
                     3. Gerenciar Pedidos
@@ -28,8 +28,8 @@ public class MenuPrincipal {
 
             switch (opcao) {
                 case 1 -> usuarioController.menu();
-                case 2 -> produtoController.menu();  // se existir
-                case 3 -> pedidoController.menu();   // se existir
+                case 2 -> produtoController.menu();
+                case 3 -> pedidoController.menu();
                 case 0 -> System.out.println("Encerrando sistema...");
                 default -> System.out.println("Opção inválida! Tente novamente.");
             }

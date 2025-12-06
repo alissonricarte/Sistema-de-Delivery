@@ -7,10 +7,11 @@ public class Entregador extends Pessoa {
 
     private String placaVeiculo;
 
-    public Entregador(String nome, String cpf, String telefone, String email, String placaVeiculo) {
-        super(nome, cpf, telefone, email);
+    public Entregador(String nome, String cpf, String telefone, String placaVeiculo) {
+        super(nome, cpf, telefone, "entregador@local.com"); // Email padrão para entregadores
         setPlacaVeiculo(placaVeiculo);
     }
+
 
     public String getPlacaVeiculo() {
         return placaVeiculo;
