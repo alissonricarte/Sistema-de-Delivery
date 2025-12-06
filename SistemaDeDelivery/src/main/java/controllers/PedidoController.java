@@ -84,7 +84,7 @@ public class PedidoController {
         Pedido pedido = new Pedido(descricao, cliente, entregador);
 
         // ================================
-        // ADIÇÃO DE ITENS
+        // ADIÇÃO DE ITENS COM ESTOQUE
         // ================================
         while (true) {
 
@@ -94,7 +94,7 @@ public class PedidoController {
             }
 
             System.out.println("\nProdutos disponíveis:");
-            produtoController.listarComId();
+            produtoController.listar();
 
             int id = InputHelper.lerInt("ID do produto (0 para finalizar): ");
             if (id == 0) break;
@@ -112,8 +112,20 @@ public class PedidoController {
                 continue;
             }
 
+            if (qtd > p.getQuantidade()) {
+                System.out.println("Estoque insuficiente! Disponível: " + p.getQuantidade());
+                continue;
+            }
+
             pedido.adicionarItem(new ItemPedido(p, qtd));
-            System.out.println("Item adicionado!");
+
+            p.setQuantidade(p.getQuantidade() - qtd);
+
+            System.out.println("Item adicionado! Estoque restante: " + p.getQuantidade());
+
+            if (p.getQuantidade() == 0) {
+                System.out.println("⚠ Produto esgotado!");
+            }
         }
 
         if (pedido.getItens().isEmpty()) {

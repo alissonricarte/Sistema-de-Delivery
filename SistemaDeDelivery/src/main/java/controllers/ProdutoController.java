@@ -2,11 +2,10 @@ package main.java.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import main.java.utils.InputHelper;
 import main.java.models.abstratos.Produto;
-import main.java.models.produtos.Comida;
 import main.java.models.produtos.Bebida;
+import main.java.models.produtos.Comida;
+import main.java.utils.InputHelper;
 
 public class ProdutoController {
 
@@ -20,17 +19,21 @@ public class ProdutoController {
     }
 
     public void listarComId() {
-    if (produtos.isEmpty()) {
-        System.out.println("Nenhum produto cadastrado.");
-        return;
-    }
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado.");
+            return;
+        }
 
-    System.out.println("\n--- Produtos (com ID) ---");
+        System.out.println("\n--- Produtos (com ID) ---");
 
-    for (int i = 0; i < produtos.size(); i++) {
-        System.out.println((i + 1) + " - " + produtos.get(i).getNome());
+        for (Produto p : produtos) {
+            System.out.println(
+                p.getId() + " - " + p.getNome() +
+                " | Preço: R$" + p.getPreco() +
+                " | Estoque: " + p.getQuantidade()
+            );
+        }
     }
-}
 
     public List<Produto> getProdutos() {
         return produtos;
@@ -57,19 +60,21 @@ public class ProdutoController {
     }
 
     private void cadastrar() {
+
         System.out.println("\n--- Tipo de produto: ---");
         System.out.println("1 - Comida");
         System.out.println("2 - Bebida");
-    
         int tipo = InputHelper.lerInt("Tipo: ");
 
         String nome = InputHelper.lerString("Nome: ");
         double preco = InputHelper.lerDouble("Preço: ");
+        int quantidade = InputHelper.lerInt("Quantidade: ");
 
         try {
+
             Produto p = switch (tipo) {
-                case 1 -> new Comida(nome, preco);
-                case 2 -> new Bebida(nome, preco);
+                case 1 -> new Comida(nome, preco, quantidade);
+                case 2 -> new Bebida(nome, preco, quantidade);
                 default -> null;
             };
 

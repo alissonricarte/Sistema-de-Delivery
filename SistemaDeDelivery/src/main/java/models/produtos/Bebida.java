@@ -5,8 +5,8 @@ import main.java.utils.InputHelper;
 
 public class Bebida extends Produto {
 
-    public Bebida(String nome, double preco){
-        super(nome, preco);
+    public Bebida(String nome, double preco, int quantidade){
+        super(nome, preco, quantidade);
     }
 
     @Override
