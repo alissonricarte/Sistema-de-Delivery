@@ -6,7 +6,7 @@ import java.util.List;
 public class Pedido {
 
     private String descricao;
-    private List<String> itens = new ArrayList<>();
+    private List<ItemPedido> itens = new ArrayList<>();
 
     public Pedido(String descricao) {
         if (descricao == null || descricao.trim().isEmpty()) {
@@ -19,22 +19,32 @@ public class Pedido {
         return descricao;
     }
 
-    public void adicionarItem(String item) {
+    public void adicionarItem(ItemPedido item) {
         if( item == null) {
             throw new IllegalArgumentException("Item não pode ser nulo.");
         }
-        itens.add(item.trim());
+        itens.add(item);
     }
 
-    public List<String> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
+    }
+
+    public double getTotal() {
+        return itens.stream().mapToDouble(ItemPedido::getSubtotal).sum();
     }
 
     @Override
     public String toString() {
-        return "Pedido{" +
-                "descricao='" + descricao + '\'' +
-                ", itens=" + itens +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n=== ").append(descricao).append(" ===\n");
+
+        for (ItemPedido item : itens) {
+            sb.append(item).append("\n");
+        }
+
+        sb.append("Total: R$ ").append(String.format("%.2f", getTotal()));
+
+        return sb.toString();
     }
 }

@@ -18,16 +18,16 @@ public class UsuarioController {
                     --- Clientes ---
                     1 - Cadastrar Cliente
                     2 - Listar Cliente
-                    3 - Apagar Cliente
-                    
+                    3 - Apagar Cliente                
                     0 - Voltar
                     """);
-            op = InputHelper.lerInt("escolha:");
+            op = InputHelper.lerInt("Escolha:");
 
             switch (op) {
                 case 1 -> cadastrar();
                 case 2 -> listar();
                 case 3 -> excluir();
+                case 0 -> {}
                 default -> System.out.println("Opção inválida!");
             }
 
@@ -76,8 +76,13 @@ public class UsuarioController {
         }
 
         System.out.println("\n--- Lista de Clientes ---");
-        clientes.forEach(System.out::println);
+        for (Cliente c : clientes) {
+            System.out.println("=================================");
+            System.out.println(c);
+        }
+        System.out.println("=================================");
     }
+
     public void excluir() {
         String cpf = InputHelper.lerString("CPF do cliente a remover: ");
         if (excluirCliente(cpf))

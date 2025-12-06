@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.java.utils.InputHelper;
 import main.java.models.abstratos.Produto;
-import main.java.models.interfaces.ITaxavel;
 import main.java.models.produtos.Comida;
 import main.java.models.produtos.Bebida;
 
@@ -13,13 +12,36 @@ public class ProdutoController {
 
     private List<Produto> produtos = new ArrayList<>();
 
+    public Produto buscarPorId(int id) {
+        return produtos.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void listarComId() {
+    if (produtos.isEmpty()) {
+        System.out.println("Nenhum produto cadastrado.");
+        return;
+    }
+
+    System.out.println("\n--- Produtos (com ID) ---");
+
+    for (int i = 0; i < produtos.size(); i++) {
+        System.out.println((i + 1) + " - " + produtos.get(i).getNome());
+    }
+}
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
     public void menu() {
         int op;
         do {
             System.out.println("\n--- Produtos ---");
             System.out.println("1 - Cadastrar");
             System.out.println("2 - Listar");
-            System.out.println("3 - Calcular taxas");
             System.out.println("0 - Voltar");
 
             op = InputHelper.lerInt("Escolha: ");
@@ -27,7 +49,6 @@ public class ProdutoController {
             switch (op) {
                 case 1 -> cadastrar();
                 case 2 -> listar();
-                case 3 -> calcularTaxas();
                 case 0 -> {}
                 default -> System.out.println("Opção inválida!");
             }
@@ -42,58 +63,36 @@ public class ProdutoController {
     
         int tipo = InputHelper.lerInt("Tipo: ");
 
-        String nome = InputHelper.lerString("Nome do produto: ");
+        String nome = InputHelper.lerString("Nome: ");
         double preco = InputHelper.lerDouble("Preço: ");
 
-        try{
-            Produto p = null;
+        try {
+            Produto p = switch (tipo) {
+                case 1 -> new Comida(nome, preco);
+                case 2 -> new Bebida(nome, preco);
+                default -> null;
+            };
 
-            switch (tipo) {
-                case 1 -> {
-                    String tipoComida = InputHelper.lerString("Tipo da comida: ");
-                    p = new Comida(nome, preco, tipoComida);
-                }
-                case 2 -> {
-                    String tamanho = InputHelper.lerString("Tamanho da bebida: ");
-                    p = new Bebida(nome, preco, tamanho);
-                }
-                default -> {
-                    System.out.println("Tipo inválido!");
-                    return;
-                }
+            if (p == null) {
+                System.out.println("Tipo inválido!");
+                return;
             }
+
             produtos.add(p);
-            System.out.println("Produto cadastrado com sucesso!");
-        }catch (Exception e){
-            System.out.println("Erro ao cadastrar produto: " + e.getMessage());
+            System.out.println("Produto cadastrado! ID: " + p.getId());
+
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar: " + e.getMessage());
         }
-   }
+    }
 
     private void listar() {
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado.");
             return;
         }
+
         System.out.println("\n--- Lista de Produtos ---");
         produtos.forEach(System.out::println);
     }
-
-    public void calcularTaxas() {
-        System.out.println("=== Taxas dos Produtos ===");
-
-        boolean encontrou = false;
-
-        for (Produto p : produtos) {
-            if (p instanceof ITaxavel) {
-                ITaxavel taxavel = (ITaxavel) p;
-                System.out.println(p.getNome() + " - Taxa: R$ " + taxavel.calcularTaxa());
-                encontrou = true;
-            }
-        }
-
-        if (!encontrou) {
-            System.out.println("Nenhum produto possui taxa.");
-        }
-    }
 }
-

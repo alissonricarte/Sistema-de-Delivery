@@ -9,7 +9,7 @@ public class MenuPrincipal {
 
     UsuarioController usuarioController = new UsuarioController();
     ProdutoController produtoController = new ProdutoController();
-    PedidoController pedidoController = new PedidoController();
+    PedidoController pedidoController = new PedidoController(produtoController);
 
     public void iniciar() {
         int opcao;
