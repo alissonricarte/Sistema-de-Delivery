@@ -1,4 +1,4 @@
-package main.java.enums;
+package main.java.Enums;
 
 public enum StatusPedido {
     PENDENTE("Pendente"),
