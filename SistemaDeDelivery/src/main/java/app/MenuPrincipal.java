@@ -19,7 +19,6 @@ public class MenuPrincipal {
                     1. Gerenciar Usuários
                     2. Gerenciar Produtos
                     3. Gerenciar Pedidos
-                    
                     0. Sair
                     """);
 
