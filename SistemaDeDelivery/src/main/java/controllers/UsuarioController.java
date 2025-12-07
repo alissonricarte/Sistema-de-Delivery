@@ -138,33 +138,48 @@ public class UsuarioController {
     // CRUD ENTREGADORES
     // =========================
     public void cadastrarEntregador() {
+
+    String nome = InputHelper.lerString("Nome: ");
+
+    String cpf;
+    do {
+        cpf = InputHelper.lerString("CPF: ");
+        if (!Validacao.validarCPF(cpf))
+            System.out.println("CPF inválido!");
+    } while (!Validacao.validarCPF(cpf));
+
+    String telefone;
+    do {
+        telefone = InputHelper.lerString("Telefone: ");
+        if (!Validacao.validarTelefone(telefone))
+            System.out.println("Telefone inválido!");
+    } while (!Validacao.validarTelefone(telefone));
+
+
+    // ==========================
+    //   VALIDAÇÃO DA PLACA
+    // ==========================
+    String placa;
+    while (true) {
         try {
-            String nome = InputHelper.lerString("Nome: ");
+            
+            placa = InputHelper.lerString("Placa do veículo: ");
+            // Testa só a placa usando o setter
+            Entregador teste = new Entregador(nome, cpf, telefone, placa);
+            break; // Se chegou aqui, a placa é válida
 
-            String cpf;
-            do {
-                cpf = InputHelper.lerString("CPF: ");
-                if (!Validacao.validarCPF(cpf))
-                    System.out.println("CPF inválido!");
-            } while (!Validacao.validarCPF(cpf));
-
-            String telefone;
-            do {
-                telefone = InputHelper.lerString("Telefone: ");
-                if (!Validacao.validarTelefone(telefone))
-                    System.out.println("Telefone inválido!");
-            } while (!Validacao.validarTelefone(telefone));
-
-            String placa = InputHelper.lerString("Placa do veículo: ");
-
-            Entregador e = new Entregador(nome, cpf, telefone, placa);
-            entregadores.add(e);
-
-            System.out.println("Entregador cadastrado!");
         } catch (Exception e) {
-            System.out.println("Erro ao cadastrar entregador: " + e.getMessage());
+            System.out.println("Placa inválida!");
         }
     }
+
+    // Agora sim cria o entregador DEFINITIVO
+    Entregador e = new Entregador(nome, cpf, telefone, placa);
+    entregadores.add(e);
+
+    System.out.println("Entregador cadastrado!");
+}
+
 
     public void listarEntregadores() {
         if (entregadores.isEmpty()) {
