@@ -61,40 +61,47 @@ public class UsuarioController {
     // CRUD CLIENTES
     // =========================
     public void cadastrarCliente() {
-        try {
-            String nome = InputHelper.lerString("Nome: ");
+    try {
+        String nome;
+        do {
+            nome = InputHelper.lerString("Nome: ");
+            if (!Validacao.validarNome(nome)) {
+                System.out.println("Nome inválido! Use apenas letras e espaços.");
+            }
+        } while (!Validacao.validarNome(nome));
 
-            String cpf;
-            do {
-                cpf = InputHelper.lerString("CPF: ");
-                if (!Validacao.validarCPF(cpf))
-                    System.out.println("CPF inválido!");
-            } while (!Validacao.validarCPF(cpf));
+        String cpf;
+        do {
+            cpf = InputHelper.lerString("CPF: ");
+            if (!Validacao.validarCPF(cpf))
+                System.out.println("CPF inválido!");
+        } while (!Validacao.validarCPF(cpf));
 
-            String telefone;
-            do {
-                telefone = InputHelper.lerString("Telefone: ");
-                if (!Validacao.validarTelefone(telefone))
-                    System.out.println("Telefone inválido!");
-            } while (!Validacao.validarTelefone(telefone));
+        String telefone;
+        do {
+            telefone = InputHelper.lerString("Telefone: ");
+            if (!Validacao.validarTelefone(telefone))
+                System.out.println("Telefone inválido!");
+        } while (!Validacao.validarTelefone(telefone));
 
-            String email;
-            do {
-                email = InputHelper.lerString("Email: ");
-                if (!Validacao.validarEmail(email))
-                    System.out.println("Email inválido!");
-            } while (!Validacao.validarEmail(email));
+        String email;
+        do {
+            email = InputHelper.lerString("Email: ");
+            if (!Validacao.validarEmail(email))
+                System.out.println("Email inválido!");
+        } while (!Validacao.validarEmail(email));
 
-            String endereco = InputHelper.lerString("Endereço: ");
+        String endereco = InputHelper.lerString("Endereço: ");
 
-            Cliente c = new Cliente(nome, cpf, telefone, email, endereco);
-            clientes.add(c);
+        Cliente c = new Cliente(nome, cpf, telefone, email, endereco);
+        clientes.add(c);
 
-            System.out.println("Cliente cadastrado!");
-        } catch (Exception e) {
-            System.out.println("Erro ao cadastrar cliente: " + e.getMessage());
-        }
+        System.out.println("Cliente cadastrado!");
+    } catch (Exception e) {
+        System.out.println("Erro ao cadastrar cliente: " + e.getMessage());
     }
+}
+
 
     public void listarClientes() {
         if (clientes.isEmpty()) {
@@ -139,8 +146,16 @@ public class UsuarioController {
     // =========================
     public void cadastrarEntregador() {
 
-    String nome = InputHelper.lerString("Nome: ");
+    // Valida nome
+    String nome;
+    do {
+        nome = InputHelper.lerString("Nome: ");
+        if (!Validacao.validarNome(nome)) {
+            System.out.println("Nome inválido! Use apenas letras e espaços.");
+        }
+    } while (!Validacao.validarNome(nome));
 
+    // Valida CPF
     String cpf;
     do {
         cpf = InputHelper.lerString("CPF: ");
@@ -148,6 +163,7 @@ public class UsuarioController {
             System.out.println("CPF inválido!");
     } while (!Validacao.validarCPF(cpf));
 
+    // Valida telefone
     String telefone;
     do {
         telefone = InputHelper.lerString("Telefone: ");
@@ -155,31 +171,26 @@ public class UsuarioController {
             System.out.println("Telefone inválido!");
     } while (!Validacao.validarTelefone(telefone));
 
-
-    // ==========================
-    //   VALIDAÇÃO DA PLACA
-    // ==========================
+    // Validação da placa (loop que não deixa sair até ser válida)
     String placa;
     while (true) {
         try {
-            
             placa = InputHelper.lerString("Placa do veículo: ");
-            // Testa só a placa usando o setter
-            Entregador teste = new Entregador(nome, cpf, telefone, placa);
-            break; // Se chegou aqui, a placa é válida
-
+            // testa apenas o formato da placa sem criar efeitos colaterais:
+            // criar um método utilitário seria ideal, mas podemos usar o construtor de teste
+            Entregador teste = new Entregador(nome, "00000000000", "0000000000", placa);
+            break;
         } catch (Exception e) {
-            System.out.println("Placa inválida!");
+            System.out.println("Placa inválida! " + e.getMessage());
         }
     }
 
-    // Agora sim cria o entregador DEFINITIVO
+    // cria o entregador real (com os dados válidos)
     Entregador e = new Entregador(nome, cpf, telefone, placa);
     entregadores.add(e);
 
     System.out.println("Entregador cadastrado!");
 }
-
 
     public void listarEntregadores() {
         if (entregadores.isEmpty()) {

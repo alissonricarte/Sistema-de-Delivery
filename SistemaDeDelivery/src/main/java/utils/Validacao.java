@@ -2,6 +2,16 @@ package main.java.utils;
 
 public class Validacao {
 
+    // -------------------- VALIDAR NOME --------------------
+    
+    public static boolean validarNome(String nome) {
+    if (nome == null) return false;
+        nome = nome.trim();
+    
+    if (nome.isEmpty()) return false;
+        return nome.matches("^[\\p{L} ]+$");
+    }
+
     // -------------------- VALIDAR CPF --------------------
 
     public static boolean validarCPF(String cpf) {

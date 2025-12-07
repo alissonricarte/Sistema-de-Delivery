@@ -1,11 +1,13 @@
 package main.java.models.usuarios;
 
 import main.java.models.abstratos.Pessoa;
+import main.java.utils.InputHelper;
+import main.java.utils.Validacao;
 
 public class Cliente extends Pessoa {
 
     private String endereco;
-
+    
     public Cliente(String nome, String cpf, String telefone, String email, String endereco){
         super(nome, cpf, telefone, email);
         setEndereco(endereco);

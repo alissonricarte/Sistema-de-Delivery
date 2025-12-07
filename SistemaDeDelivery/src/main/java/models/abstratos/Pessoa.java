@@ -21,10 +21,20 @@ public abstract class Pessoa {
     public String getEmail() { return email; }
 
     public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty())
-            throw new IllegalArgumentException("Nome não pode ser vazio.");
-        this.nome = nome.trim();
+    if (nome == null || nome.trim().isEmpty()) {
+        throw new IllegalArgumentException("Nome não pode ser vazio.");
     }
+
+    nome = nome.trim().replaceAll(" +", " ");
+
+    if (!nome.matches("^[\\p{L} ]+$")) {
+        throw new IllegalArgumentException("O nome deve conter apenas letras e espaços.");
+    }
+
+    this.nome = nome;
+}
+
+
     public void setCpf(String cpf) {
         if (!Validacao.validarCPF(cpf))
             throw new IllegalArgumentException("CPF inválido.");
