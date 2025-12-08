@@ -1,5 +1,6 @@
 package main.java.models;
 
+import main.java.Enums.StatusPedido;
 import main.java.models.usuarios.Cliente;
 import main.java.models.usuarios.Entregador;
 
@@ -11,6 +12,8 @@ public class Pedido {
     private String descricao;
     private Cliente cliente;
     private Entregador entregador;
+
+    private StatusPedido status;
 
     private List<ItemPedido> itens = new ArrayList<>();
 
@@ -31,6 +34,7 @@ public class Pedido {
         this.descricao = descricao.trim();
         this.cliente = cliente;
         this.entregador = entregador;
+        this.status = StatusPedido.PENDENTE;
     }
 
     // ======================================
@@ -52,6 +56,10 @@ public class Pedido {
     public List<ItemPedido> getItens() {
         return itens;
     }
+
+    public StatusPedido getStatus() {return status;}
+
+    public void setStatus(StatusPedido status) {this.status = status;}
 
     // ======================================
     // MANIPULAÇÃO DOS ITENS

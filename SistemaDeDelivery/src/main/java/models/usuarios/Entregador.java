@@ -11,7 +11,13 @@ public class Entregador extends Pessoa {
         super(nome, cpf, telefone, "entregador@local.com"); // Email padrão para entregadores
         setPlacaVeiculo(placaVeiculo);
     }
-
+    public static void validarPlaca(String placa) throws IllegalArgumentException {
+        // Regex para 3 letras (A-Z), hífen, 4 dígitos (0-9)
+        String regex = "[A-Z]{3}-\\d{4}";
+        if (!placa.matches(regex)) {
+            throw new IllegalArgumentException("O formato deve ser ABC-1234 e as letras devem ser maiúsculas.");
+        }
+    }
 
     public String getPlacaVeiculo() {
         return placaVeiculo;
@@ -19,7 +25,6 @@ public class Entregador extends Pessoa {
 
     public void setPlacaVeiculo(String placaVeiculo) {
 
-        // Verifica se está vazia
         if (placaVeiculo == null || placaVeiculo.trim().isEmpty()) {
             throw new IllegalArgumentException("A placa do veículo não pode ser vazia!");
         }
