@@ -32,7 +32,7 @@ public class ItemPedido {
     @Override
     public String toString() {
         return "[" + produto.getId() + "] " + produto.getNome() +
-                " x" + quantidade +
-                " — Subtotal: R$ " + String.format("%.2f", getSubtotal());
+                " x " + quantidade +
+                " | Subtotal: R$ " + String.format("%.2f", getSubtotal());
     }
 }

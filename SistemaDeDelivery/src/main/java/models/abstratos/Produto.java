@@ -32,14 +32,14 @@ public abstract class Produto {
 
     public void setNome(String nome) {
     if (nome == null || nome.trim().isEmpty()) {
-        throw new IllegalArgumentException("O nome do produto não pode ser vazio.");
+        throw new IllegalArgumentException("[ O nome do produto não pode ser vazio ]");
     }
 
     nome = nome.trim().replaceAll(" +", " ");
 
     if (!nome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ0-9()\\-\\/ ]+$")) {
         throw new IllegalArgumentException(
-            "O nome do produto deve conter apenas letras, números e caracteres simples (- / ())."
+            "[ O nome do produto deve conter apenas letras, números e caracteres simples (- / ()) ]"
         );
     }
 
@@ -49,7 +49,7 @@ public abstract class Produto {
 
     public void setPreco(double preco) {
     if (preco <= 0) {
-        throw new IllegalArgumentException("O preço deve ser maior que zero.");
+        throw new IllegalArgumentException("[ O preço deve ser maior que zero ]");
     }
     this.preco = preco;
     }
@@ -57,7 +57,7 @@ public abstract class Produto {
 
     public void setQuantidade(int quantidade) {
     if (quantidade < 0) {
-        throw new IllegalArgumentException("A quantidade não pode ser negativa.");
+        throw new IllegalArgumentException("[ A quantidade não pode ser negativa ]");
     }
     this.quantidade = quantidade;
     }
@@ -65,17 +65,20 @@ public abstract class Produto {
 
     public void reduzirEstoque(int qtd) {
         if (qtd > quantidade)
-            throw new IllegalArgumentException("Estoque insuficiente!");
+            throw new IllegalArgumentException("[ Estoque insuficiente ]");
         this.quantidade -= qtd;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id +
-               "\nNome: " + nome +
-               "\nPreço: R$ " + String.format("%.2f", preco) +
-               "\nQuantidade em estoque: " + quantidade;
-    }
+    String sep = "==============================";
+    return sep +
+           "\nID: " + id +
+           "\nNome: " + nome +
+           "\nPreço: R$ " + String.format("%.2f", preco) +
+           "\nQuantidade em estoque: " + quantidade +
+           "\n" + sep;
+}
 
     public abstract void exibirDetalhes();
 }

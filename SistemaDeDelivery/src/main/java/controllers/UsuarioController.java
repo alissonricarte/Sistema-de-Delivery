@@ -30,6 +30,7 @@ public class UsuarioController {
     public void menu() {
         int op;
         do {
+            System.out.println("\n");
             System.out.println("""
                     --- Usuários ---
                     1 - Cadastrar Cliente
@@ -41,7 +42,7 @@ public class UsuarioController {
                     0 - Voltar
                     """);
 
-            op = InputHelper.lerInt("Escolha:");
+            op = InputHelper.lerInt("- Escolha:");
 
             switch (op) {
                 case 1 -> cadastrarCliente();
@@ -51,7 +52,7 @@ public class UsuarioController {
                 case 5 -> listarEntregadores();
                 case 6 -> excluirEntregadorMenu();
                 case 0 -> {}
-                default -> System.out.println("Opção inválida!");
+                default -> System.out.println("⚠ Opção inválida!");
             }
 
         } while (op != 0);
@@ -66,7 +67,7 @@ public class UsuarioController {
         do {
             nome = InputHelper.lerString("Nome: ");
             if (!Validacao.validarNome(nome)) {
-                System.out.println("Nome inválido! Use apenas letras e espaços.");
+                System.out.println("[ Nome inválido! Use apenas letras e espaços ]");
             }
         } while (!Validacao.validarNome(nome));
 
@@ -74,38 +75,38 @@ public class UsuarioController {
         do {
             cpf = InputHelper.lerString("CPF: ");
             if (!Validacao.validarCPF(cpf))
-                System.out.println("CPF inválido!");
+                System.out.println("[ CPF inválido ]");
         } while (!Validacao.validarCPF(cpf));
 
         String telefone;
         do {
             telefone = InputHelper.lerString("Telefone: ");
             if (!Validacao.validarTelefone(telefone))
-                System.out.println("Telefone inválido!");
+                System.out.println("[ Telefone inválido ]");
         } while (!Validacao.validarTelefone(telefone));
 
         String email;
         do {
             email = InputHelper.lerString("Email: ");
             if (!Validacao.validarEmail(email))
-                System.out.println("Email inválido!");
+                System.out.println("[ Email inválido ]");
         } while (!Validacao.validarEmail(email));
 
         String endereco = InputHelper.lerString("Endereço: ");
 
         Cliente c = new Cliente(nome, cpf, telefone, email, endereco);
         clientes.add(c);
-
-        System.out.println("Cliente cadastrado!");
+        System.out.println("\n");
+        System.out.println(">> Cliente cadastrado!");
     } catch (Exception e) {
-        System.out.println("Erro ao cadastrar cliente: " + e.getMessage());
+        System.out.println("[ Erro ao cadastrar cliente: " + e.getMessage() + " ]");
     }
 }
 
 
     public void listarClientes() {
         if (clientes.isEmpty()) {
-            System.out.println("Nenhum cliente cadastrado.");
+            System.out.println("[ Nenhum cliente cadastrado ]");
             return;
         }
 
@@ -131,13 +132,14 @@ public class UsuarioController {
 
     public void excluirClienteMenu() {
         listarClientes();
-        int id = InputHelper.lerInt("ID do cliente a remover: ");
+        int id = InputHelper.lerInt("- ID do cliente a remover: ");
         Cliente c = buscarClientePorId(id);
         if (c != null) {
             clientes.remove(c);
-            System.out.println("Cliente removido!");
+            System.out.println("\n");
+            System.out.println(">> Cliente removido!");
         } else {
-            System.out.println("Cliente não encontrado!");
+            System.out.println("[ Cliente não encontrado ]");
         }
     }
 
@@ -151,7 +153,7 @@ public class UsuarioController {
     do {
         nome = InputHelper.lerString("Nome: ");
         if (!Validacao.validarNome(nome)) {
-            System.out.println("Nome inválido! Use apenas letras e espaços.");
+            System.out.println("[ Nome inválido! Use apenas letras e espaços ]");
         }
     } while (!Validacao.validarNome(nome));
 
@@ -160,7 +162,7 @@ public class UsuarioController {
     do {
         cpf = InputHelper.lerString("CPF: ");
         if (!Validacao.validarCPF(cpf))
-            System.out.println("CPF inválido!");
+            System.out.println("[ CPF inválido ]");
     } while (!Validacao.validarCPF(cpf));
 
     // Valida telefone
@@ -168,7 +170,7 @@ public class UsuarioController {
     do {
         telefone = InputHelper.lerString("Telefone: ");
         if (!Validacao.validarTelefone(telefone))
-            System.out.println("Telefone inválido!");
+            System.out.println("[ Telefone inválido ]");
     } while (!Validacao.validarTelefone(telefone));
 
     // Validação da placa (loop que não deixa sair até ser válida)
@@ -183,19 +185,19 @@ public class UsuarioController {
                 break; // Sai do loop apenas se a validação acima não lançar exceção
             } catch (Exception e) {
                 // Captura a exceção lançada pelo validarPlaca()
-                System.out.println("Placa inválida! " + e.getMessage());
+                System.out.println("[ Placa inválida " + e.getMessage() +" ]");
             }
         }
     // cria o entregador real (com os dados válidos)
     Entregador e = new Entregador(nome, cpf, telefone, placa);
     entregadores.add(e);
-
-    System.out.println("Entregador cadastrado!");
+    System.out.println("\n");
+    System.out.println(">> Entregador cadastrado!");
 }
 
     public void listarEntregadores() {
         if (entregadores.isEmpty()) {
-            System.out.println("Nenhum entregador cadastrado.");
+            System.out.println("[ Nenhum entregador cadastrado ]");
             return;
         }
 
@@ -219,13 +221,15 @@ public class UsuarioController {
 
     public void excluirEntregadorMenu() {
         listarEntregadores();
-        int id = InputHelper.lerInt("ID do entregador a remover: ");
+        int id = InputHelper.lerInt("- ID do entregador a remover: ");
         Entregador e = buscarEntregadorPorId(id);
         if (e != null) {
             entregadores.remove(e);
-            System.out.println("Entregador removido!");
+            System.out.println("\n");
+            System.out.println(">> Entregador removido!");
+            System.out.println("\n");
         } else {
-            System.out.println("Entregador não encontrado!");
+            System.out.println("[ Entregador não encontrado ]");
         }
     }
 }

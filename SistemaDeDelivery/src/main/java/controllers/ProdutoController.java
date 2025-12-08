@@ -71,6 +71,7 @@ public class ProdutoController {
     String nome;
     while (true) {
         try {
+            System.err.print("\n");
             nome = InputHelper.lerString("Nome do produto: ");
 
             // Teste de validação usando uma classe concreta
@@ -78,7 +79,7 @@ public class ProdutoController {
             break;
 
         } catch (Exception e) {
-            System.out.println("Nome inválido: " + e.getMessage());
+            System.out.println("[ Nome inválido: " + e.getMessage()+ " ]");
         }
     }
 
@@ -87,11 +88,11 @@ public class ProdutoController {
     while (true) {
         try {
             preco = InputHelper.lerDouble("Preço: ");
-            if (preco <= 0) throw new IllegalArgumentException("O preço deve ser maior que zero.");
+            if (preco <= 0) throw new IllegalArgumentException("[ O preço deve ser maior que zero ]");
             break;
 
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            System.out.println("[ Erro: " + e.getMessage()+ " ]");
         }
     }
 
@@ -100,11 +101,11 @@ public class ProdutoController {
     while (true) {
         try {
             quantidade = InputHelper.lerInt("Quantidade: ");
-            if (quantidade < 0) throw new IllegalArgumentException("A quantidade não pode ser negativa.");
+            if (quantidade < 0) throw new IllegalArgumentException("[ A quantidade não pode ser negativa ]");
             break;
 
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            System.out.println("[ Erro: " + e.getMessage()+ " ]");
         }
     }
 
@@ -117,7 +118,7 @@ public class ProdutoController {
         };
 
         if (p == null) {
-            System.out.println("Tipo inválido!");
+            System.out.println("[ Tipo inválido ]");
             return;
         }
 
@@ -125,14 +126,14 @@ public class ProdutoController {
         System.out.println("Produto cadastrado! ID: " + p.getId());
 
     } catch (Exception e) {
-        System.out.println("Erro ao cadastrar: " + e.getMessage());
+        System.out.println("[ Erro ao cadastrar: " + e.getMessage()+ " ]");
     }
 }
 
 
     public void listar() {
         if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto cadastrado.");
+            System.out.println("[ Nenhum produto cadastrado ]");
             return;
         }
 
