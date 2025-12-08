@@ -61,35 +61,74 @@ public class ProdutoController {
 
     private void cadastrar() {
 
-        System.out.println("\n--- Tipo de produto: ---");
-        System.out.println("1 - Comida");
-        System.out.println("2 - Bebida");
-        int tipo = InputHelper.lerInt("Tipo: ");
+    System.out.println("\n--- Tipo de produto: ---");
+    System.out.println("1 - Comida");
+    System.out.println("2 - Bebida");
+    int tipo = InputHelper.lerInt("Tipo: ");
 
-        String nome = InputHelper.lerString("Nome: ");
-        double preco = InputHelper.lerDouble("Preço: ");
-        int quantidade = InputHelper.lerInt("Quantidade: ");
 
+    // VALIDAÇÃO DO NOME
+    String nome;
+    while (true) {
         try {
+            nome = InputHelper.lerString("Nome do produto: ");
 
-            Produto p = switch (tipo) {
-                case 1 -> new Comida(nome, preco, quantidade);
-                case 2 -> new Bebida(nome, preco, quantidade);
-                default -> null;
-            };
-
-            if (p == null) {
-                System.out.println("Tipo inválido!");
-                return;
-            }
-
-            produtos.add(p);
-            System.out.println("Produto cadastrado! ID: " + p.getId());
+            // Teste de validação usando uma classe concreta
+            new Comida(nome, 1.0, 1); 
+            break;
 
         } catch (Exception e) {
-            System.out.println("Erro ao cadastrar: " + e.getMessage());
+            System.out.println("Nome inválido: " + e.getMessage());
         }
     }
+
+    // VALIDAÇÃO DO PREÇO
+    double preco;
+    while (true) {
+        try {
+            preco = InputHelper.lerDouble("Preço: ");
+            if (preco <= 0) throw new IllegalArgumentException("O preço deve ser maior que zero.");
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    // VALIDAÇÃO DA QUANTIDADE
+    int quantidade;
+    while (true) {
+        try {
+            quantidade = InputHelper.lerInt("Quantidade: ");
+            if (quantidade < 0) throw new IllegalArgumentException("A quantidade não pode ser negativa.");
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    // CRIA O PRODUTO DEFINITIVO
+    try {
+        Produto p = switch (tipo) {
+            case 1 -> new Comida(nome, preco, quantidade);
+            case 2 -> new Bebida(nome, preco, quantidade);
+            default -> null;
+        };
+
+        if (p == null) {
+            System.out.println("Tipo inválido!");
+            return;
+        }
+
+        produtos.add(p);
+        System.out.println("Produto cadastrado! ID: " + p.getId());
+
+    } catch (Exception e) {
+        System.out.println("Erro ao cadastrar: " + e.getMessage());
+    }
+}
+
 
     public void listar() {
         if (produtos.isEmpty()) {
