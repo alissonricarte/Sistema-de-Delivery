@@ -106,7 +106,7 @@ public class PedidoController {
                 continue;
             }
 
-            int qtd = InputHelper.lerInt("Quantidade: ");
+            int qtd = InputHelper.lerInt("Quantidade Em Estoque: ");
             if (qtd <= 0) {
                 System.out.println("Quantidade inválida!");
                 continue;

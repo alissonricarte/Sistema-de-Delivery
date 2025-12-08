@@ -173,18 +173,19 @@ public class UsuarioController {
 
     // Validação da placa (loop que não deixa sair até ser válida)
     String placa;
-    while (true) {
-        try {
-            placa = InputHelper.lerString("Placa do veículo: ");
-            // testa apenas o formato da placa sem criar efeitos colaterais:
-            // criar um método utilitário seria ideal, mas podemos usar o construtor de teste
-            Entregador teste = new Entregador(nome, "00000000000", "0000000000", placa);
-            break;
-        } catch (Exception e) {
-            System.out.println("Placa inválida! " + e.getMessage());
-        }
-    }
+        while (true) {
+            try {
+                placa = InputHelper.lerString("Placa do veículo. Formato: ABC-1234: ");
 
+                // Chamada do método utilitário para validar o formato da placa
+                Entregador.validarPlaca(placa); // Esta é a linha de validação!
+
+                break; // Sai do loop apenas se a validação acima não lançar exceção
+            } catch (Exception e) {
+                // Captura a exceção lançada pelo validarPlaca()
+                System.out.println("Placa inválida! " + e.getMessage());
+            }
+        }
     // cria o entregador real (com os dados válidos)
     Entregador e = new Entregador(nome, cpf, telefone, placa);
     entregadores.add(e);
