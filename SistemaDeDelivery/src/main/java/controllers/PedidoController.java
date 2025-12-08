@@ -1,5 +1,6 @@
 package main.java.controllers;
 
+import main.java.Enums.StatusPedido;
 import main.java.models.ItemPedido;
 import main.java.models.Pedido;
 import main.java.models.abstratos.Produto;
@@ -9,8 +10,58 @@ import main.java.utils.InputHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class PedidoController {
+
+    public void atualizarStatus(int indice, StatusPedido novoStatus) {
+
+        // Verifica se o índice é válido para evitar erro (IndexOutOfBoundsException)
+        if (indice < 0 || indice >= pedidos.size()) {
+            System.out.println("ID de pedido inválido. Não foi possível atualizar o status.");
+            return;
+        }
+
+        Pedido pedido = pedidos.get(indice);
+
+        // (Opcional) Adicione a lógica de validação de transição aqui, se necessário.
+
+        pedido.setStatus(novoStatus);
+        System.out.println("Status do pedido #" + (indice + 1) + " atualizado para: " + novoStatus.getDescricao());
+    }
+    // Dentro da classe PedidoController:
+
+    private void rastrearPedido() {
+        if (pedidos.isEmpty()) {
+            System.out.println("Nenhum pedido para rastrear.");
+            return;
+        }
+
+        System.out.println("\n=== ATUALIZAR STATUS DE PEDIDO ===");
+        listarPedidosComStatus(); // Novo método para mostrar lista numerada (veja abaixo)
+
+        int indice = InputHelper.lerInt("Digite o NÚMERO (ID) do pedido a atualizar: ") - 1;
+
+        if (indice < 0 || indice >= pedidos.size()) {
+            System.out.println("ID de pedido inválido.");
+            return;
+        }
+
+        System.out.println("\nStatus disponíveis:");
+        // Lista todos os valores do Enum para que o usuário possa escolher
+        StatusPedido[] statusOpcoes = StatusPedido.values();
+        for (int i = 0; i < statusOpcoes.length; i++) {
+            System.out.println((i + 1) + " - " + statusOpcoes[i].getDescricao());
+        }
+
+        int escolhaStatus = InputHelper.lerInt("Novo Status (Escolha o número): ");
+
+        if (escolhaStatus < 1 || escolhaStatus > statusOpcoes.length) {
+            System.out.println("Opção de status inválida.");
+            return;
+        }
+
+        // Chama o método que realmente faz a alteração:
+        atualizarStatus(indice, statusOpcoes[escolhaStatus - 1]);
+    }
 
     private List<Pedido> pedidos = new ArrayList<>();
     private ProdutoController produtoController;
@@ -28,6 +79,7 @@ public class PedidoController {
             System.out.println("\n--- Pedidos ---");
             System.out.println("1 - Criar pedido");
             System.out.println("2 - Listar pedidos");
+            System.out.println("3 - Rastrear/Atualizar status"); // NOVO
             System.out.println("0 - Voltar");
 
             op = InputHelper.lerInt("Escolha: ");
@@ -35,6 +87,7 @@ public class PedidoController {
             switch (op) {
                 case 1 -> criarPedido();
                 case 2 -> listar();
+                case 3 -> rastrearPedido(); // NOVO
                 case 0 -> {}
                 default -> System.out.println("Opção inválida!");
             }
@@ -106,7 +159,7 @@ public class PedidoController {
                 continue;
             }
 
-            int qtd = InputHelper.lerInt("Quantidade Em Estoque: ");
+            int qtd = InputHelper.lerInt("Quantidade: ");
             if (qtd <= 0) {
                 System.out.println("Quantidade inválida!");
                 continue;
@@ -138,13 +191,23 @@ public class PedidoController {
         System.out.println("\nPedido finalizado com sucesso!");
         System.out.println(pedido);
     }
-
     private void listar() {
         if (pedidos.isEmpty()) {
             System.out.println("Nenhum pedido cadastrado.");
             return;
         }
+        pedidos.forEach(p -> System.out.println(p + " | Status: " + p.getStatus().getDescricao()));
+    }
 
-        pedidos.forEach(System.out::println);
+    private void listarPedidosComStatus() {
+        if (pedidos.isEmpty()) return;
+
+        System.out.println("\n--- Pedidos Atuais ---");
+        for (int i = 0; i < pedidos.size(); i++) {
+            Pedido p = pedidos.get(i);
+            // Mostra o número na lista (ID visual), a descrição e o status:
+            System.out.println((i + 1) + " - " + p.getDescricao() + " | Cliente: " + p.getCliente().getNome() + " | Status: " + p.getStatus().getDescricao());
+        }
+        System.out.println("----------------------");
     }
 }
