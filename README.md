@@ -49,41 +49,92 @@ Criar um sistema simples, modular e orientado a objetos que permita:
 ---
 ## 📁 Arquitetura do Sistema
 ```
-Sistema-de-Delivery/                      # Pasta raiz do projeto
+Sistema-de-Delivery/                    # PROJETO PRINCIPAL
 │
-├── src/                               # Código-fonte principal
-│   ├── main/                          # Arquivos principais da aplicação
-│   │   ├── java/                      # Código Java do projeto
-│   │   │   ├── app/                   # Ponto de entrada do sistema
-│   │   │   │   └── Main.java          # Classe principal com menu
-│   │   │   │
-│   │   │   ├── controllers/           # Controladores (regras de negócio)
-│   │   │   │   ├── PedidoController.java     # Gerencia pedidos
-│   │   │   │   ├── ProdutoController.java    # Gerencia produtos
-│   │   │   │   └── UsuarioController.java    # Gerencia usuários (clientes/entregadores)
-│   │   │   │
-│   │   │   ├── models/                # Classes que representam os objetos do sistema
-│   │   │   │   ├── abstratos/         # Superclasses abstratas
-│   │   │   │   │   ├── Pessoa.java    # Classe mãe para usuários
-│   │   │   │   │   └── Produto.java   # Classe mãe para produtos
-│   │   │   │   │
-│   │   │   ├── interfaces/            
-│   │   │   │   ├── IImprimivel.java   # Interface para exibir detalhes
-│   │   │   │   ├── ICadastravel.java  # Interface para controllers
-│   │   │   │   └── ITaxavel.java      # Interface para produtos
-│   │   │   │   │
-│   │   │   │   ├── usuarios/          # Classes filhas de Pessoa
-│   │   │   │   │   ├── Cliente.java   # Cliente do delivery
-│   │   │   │   │   └── Entregador.java# Entregador do delivery
-│   │   │   │   │
-│   │   │   │   ├── produtos/          # Classes filhas de Produto
-│   │   │   │   │   ├── Comida.java    # Representa comidas
-│   │   │   │   │   └── Bebida.java    # Representa bebidas
-│   │   │   │   │
-│   │   │   │   └── Pedido.java        # Representa um pedido completo
+├── src/                                # CÓDIGO FONTE DO PROJETO
+│   └── main/
+│       └── java/
+│           ├── app/                    # CAMADA DE APLICAÇÃO/EXECUÇÃO
+│           │   ├── Main.java           # CLASSE PRINCIPAL DE INÍCIO DO SISTEMA
+│           │   └── MenuPrincipal.java  # CONTROLE DO MENU INTERATIVO
+│           │
+│           ├── controllers/            # CAMADA DE CONTROLE/REGRA DE NEGÓCIO
+│           │   ├── PedidoController.java    # GERENCIA OPERAÇÕES DE PEDIDOS
+│           │   ├── ProdutoController.java   # GERENCIA OPERAÇÕES DE PRODUTOS
+│           │   └── UsuarioController.java   # GERENCIA OPERAÇÕES DE USUÁRIOS
+│           │
+│           ├── enums/                  # ENUMERAÇÕES DO SISTEMA
+│           │   └── StatusPedido.java   # DEFINE OS ESTADOS DE UM PEDIDO
+│           │
+│           ├── models/                 # CAMADA DE MODELOS/ENTIDADES
+│           │   ├── abstratos/          # CLASSES ABSTRATAS BASE
+│           │   │   ├── Pessoa.java     # CLASSE ABSTRATA PARA PESSOAS (Cliente/Entregador)
+│           │   │   └── Produto.java    # CLASSE ABSTRATA PARA PRODUTOS (Comida/Bebida)
+│           │   │
+│           │   ├── interfaces/         # CONTRATOS/INTERFACES DO SISTEMA
+│           │   │   ├── Cadastravel.java  # INTERFACE PARA ENTIDADES CADASTRÁVEIS
+│           │   │   └── Taxavel.java      # INTERFACE PARA ENTIDADES TAXÁVEIS
+│           │   │
+│           │   ├── produtos/           # MODELOS CONCRETOS DE PRODUTOS
+│           │   │   ├── Comida.java     # REPRESENTA PRODUTOS DO TIPO COMIDA
+│           │   │   └── Bebida.java     # REPRESENTA PRODUTOS DO TIPO BEBIDA
+│           │   │
+│           │   ├── usuarios/           # MODELOS CONCRETOS DE USUÁRIOS
+│           │   │   ├── Cliente.java    # REPRESENTA UM CLIENTE DO SISTEMA
+│           │   │   ├── Entregador.java # REPRESENTA UM ENTREGADOR DO SISTEMA
+│           │   │   └── ItemPedido.java # REPRESENTA UM ITEM EM UM PEDIDO
+│           │   │
+│           │   └── Pedido.java         # MODELO PRINCIPAL DE PEDIDO
+│           │
+│           └── utils/                  # UTILITÁRIOS E FERRAMENTAS AUXILIARES
+│               ├── InputHelper.java    # AUXILIA NA LEITURA DE ENTRADA DO USUÁRIO
+│               └── Validacao.java      # VALIDAÇÕES E REGRAS DE FORMATAÇÃO
 │
-├── README.md                          # Documentação do projeto
-└── .gitignore                         # Ignora arquivos desnecessários no Git
+├── doc/                                # DOCUMENTAÇÃO DO PROJETO (MESMO NÍVEL DE src/)
+│   └── documentacao.md                 # DOCUMENTAÇÃO TÉCNICA E MANUAL
+│
+├── README.md                           # DOCUMENTAÇÃO INICIAL DO PROJETO
+├── .gitignore                          # ARQUIVOS IGNORADOS PELO GIT
+├── LICENSE                             # LICENÇA DO PROJETO
+└── Sistema-de-Delivery.iml             # CONFIGURAÇÃO DO PROJETO (IntelliJ IDEA)
+```
+
+## ▶️ Como Executar o Projeto
+✔️ Via Terminal (Linux/Windows)
+```
+cd src/main/java
+javac app/Main.java
+java app.Main
+```
+✔️ Via IntelliJ IDEA
+
+```
+- Abra o IntelliJ
+
+- File → Open
+
+- Selecione a pasta do projeto
+
+- Aguarde importar
+
+- No painel lateral, abra app/Main.java
+
+- Clique no botão Run ▶️
+```
+
+✔️ Via VSCode
+
+```
+Instale as extensões:
+
+- Extension Pack for Java
+
+- Abra o projeto
+
+- Entre em src/main/java/app/Main.java
+
+- Clique em Run
+
 ```
 <h2 id="colab" align="center" style="font-weight: bold; font-size: 2rem">Colaboradores</h2>
   <div align="center">
@@ -150,78 +201,4 @@ Sistema-de-Delivery/                      # Pasta raiz do projeto
   </div>
 </div>
 
-<img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=110&color=F9F9F4&section=footer&reversal=false"/>
-
-
-
----
-
-## ▶️ Como Baixar e Executar o Projeto
-
-### ✅ Opção 1 – Baixar pelo GitHub (Sem usar terminal)
-
-1. Acesse o repositório:
-
-https://github.com/alissonricarte/Sistema-de-Delivery
-
-2. Clique em **Code**
-3. Clique em **Download ZIP**
-4. Extraia o arquivo no seu computador
-5. Abra a pasta no **VS Code** ou **IntelliJ**
-6. Execute a classe `Main.java`
-
----
-
-### ✅ Opção 2 – Baixar pelo Terminal (Usando Git)
-
-```bash
-git clone https://github.com/alissonricarte/Sistema-de-Delivery.git
-cd Sistema-de-Delivery
-
-Abra no VS Code:
-
-code .
-
-Depois execute a classe Main.java.
-
----
-
-## ▶️ Como Executar no IntelliJ IDEA
-
-### ✅ Opção 1 – Abrindo o projeto pelo IntelliJ
-
-1. Abra o **IntelliJ IDEA**
-2. Clique em **File > Open**
-3. Selecione a pasta do projeto: Sistema-de-Delivery
-4. Aguarde o IntelliJ carregar e indexar o projeto
-5. No painel lateral, navegue até: src/main/java/app/Main.java
-6. Clique com o botão direito sobre o arquivo `Main.java`
-7. Clique em **Run 'Main.main()'**
-
-✅ O sistema será iniciado no terminal do próprio IntelliJ.
-
----
-
-### ✅ Opção 2 – Clonando direto no IntelliJ com Git
-
-1. Abra o **IntelliJ IDEA**
-2. Clique em **Get from VCS**
-3. Cole este link: https://github.com/alissonricarte/Sistema-de-Delivery.git
-4. Clique em **Clone**
-5. Aguarde o download
-6. Após abrir o projeto, execute o arquivo:
-7. Clique com o botão direito → **Run 'Main.main()'**
-
----
-
-
-
-## 👥 Integrantes do Grupo
-
-- Alisson Ricarte – Matrícula: 2023022969 
-- Mateus Kaynan – Matrícula: 2023022797  
-- Mateus Pinheiro – Matrícula: 2023023130  
-- Marcelo Marques – Matrícula: 2024010317
-- Sara Vitória – Matrícula: 2023022619 
-- Ana Vitória – Matrícula: 2023022758 
-- Laura Gonçalves – Matrícula: 2023022621  
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=110&color=2D2D2D&section=footer&reversal=false"/>
