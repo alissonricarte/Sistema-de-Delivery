@@ -184,6 +184,37 @@ code .
 
 Depois execute a classe Main.java.
 
+---
+
+## ▶️ Como Executar no IntelliJ IDEA
+
+### ✅ Opção 1 – Abrindo o projeto pelo IntelliJ
+
+1. Abra o **IntelliJ IDEA**
+2. Clique em **File > Open**
+3. Selecione a pasta do projeto: Sistema-de-Delivery
+4. Aguarde o IntelliJ carregar e indexar o projeto
+5. No painel lateral, navegue até: src/main/java/app/Main.java
+6. Clique com o botão direito sobre o arquivo `Main.java`
+7. Clique em **Run 'Main.main()'**
+
+✅ O sistema será iniciado no terminal do próprio IntelliJ.
+
+---
+
+### ✅ Opção 2 – Clonando direto no IntelliJ com Git
+
+1. Abra o **IntelliJ IDEA**
+2. Clique em **Get from VCS**
+3. Cole este link: https://github.com/alissonricarte/Sistema-de-Delivery.git
+4. Clique em **Clone**
+5. Aguarde o download
+6. Após abrir o projeto, execute o arquivo:
+7. Clique com o botão direito → **Run 'Main.main()'**
+
+---
+
+
 
 ## 👥 Integrantes do Grupo
 
