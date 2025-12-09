@@ -39,7 +39,7 @@ public abstract class Produto {
 
     if (!nome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ0-9()\\-\\/ ]+$")) {
         throw new IllegalArgumentException(
-            "[ O nome do produto deve conter apenas letras, números e caracteres simples (- / ()) ]"
+            "O nome do produto deve conter apenas letras, números e caracteres simples (- / ())"
         );
     }
 
