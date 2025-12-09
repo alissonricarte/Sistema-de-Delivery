@@ -32,7 +32,7 @@ public abstract class Produto {
 
     public void setNome(String nome) {
     if (nome == null || nome.trim().isEmpty()) {
-        throw new IllegalArgumentException("[ O nome do produto não pode ser vazio ]");
+        throw new IllegalArgumentException("O nome do produto não pode ser vazio");
     }
 
     nome = nome.trim().replaceAll(" +", " ");
@@ -49,7 +49,7 @@ public abstract class Produto {
 
     public void setPreco(double preco) {
     if (preco <= 0) {
-        throw new IllegalArgumentException("[ O preço deve ser maior que zero ]");
+        throw new IllegalArgumentException("O preço deve ser maior que zero");
     }
     this.preco = preco;
     }
@@ -57,7 +57,7 @@ public abstract class Produto {
 
     public void setQuantidade(int quantidade) {
     if (quantidade < 0) {
-        throw new IllegalArgumentException("[ A quantidade não pode ser negativa ]");
+        throw new IllegalArgumentException("A quantidade não pode ser negativa");
     }
     this.quantidade = quantidade;
     }
@@ -65,7 +65,7 @@ public abstract class Produto {
 
     public void reduzirEstoque(int qtd) {
         if (qtd > quantidade)
-            throw new IllegalArgumentException("[ Estoque insuficiente ]");
+            throw new IllegalArgumentException("Estoque insuficiente");
         this.quantidade -= qtd;
     }
 

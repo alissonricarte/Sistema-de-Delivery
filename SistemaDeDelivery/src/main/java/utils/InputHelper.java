@@ -18,7 +18,7 @@ public class InputHelper {
                 System.out.print(mensagem);
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Por favor, digite um número inteiro válido!");
+                System.out.println("[ Por favor, digite um número inteiro válido ]");
             }
         }
     }
@@ -29,7 +29,7 @@ public class InputHelper {
                 System.out.print(mensagem);
                 return Double.parseDouble(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Por favor, digite um número decimal válido!");
+                System.out.println("[ Por favor, digite um número decimal válido ]");
             }
         }
     }

@@ -53,7 +53,7 @@ public class ProdutoController {
                 case 1 -> cadastrar();
                 case 2 -> listar();
                 case 0 -> {}
-                default -> System.out.println("Opção inválida!");
+                default -> System.out.println("[ Opção inválida ]");
             }
 
         } while (op != 0);
@@ -66,29 +66,28 @@ public class ProdutoController {
     System.out.println("2 - Bebida");
     int tipo = InputHelper.lerInt("Tipo: ");
 
-
-    // VALIDAÇÃO DO NOME
+    // ======= VALIDAÇÃO DO NOME DO PRODUTO =========
     String nome;
-    while (true) {
+        while (true) {
         try {
-            System.err.print("\n");
-            nome = InputHelper.lerString("Nome do produto: ");
+            nome = InputHelper.lerString("Nome do produto: ").trim();
 
-            // Teste de validação usando uma classe concreta
-            new Comida(nome, 1.0, 1); 
+            new Comida(nome, 1.0, 1);  
+
             break;
 
         } catch (Exception e) {
-            System.out.println("[ Nome inválido: " + e.getMessage()+ " ]");
+            System.out.println("[ Nome inválido: " + e.getMessage() + " ]");
         }
     }
+
 
     // VALIDAÇÃO DO PREÇO
     double preco;
     while (true) {
         try {
             preco = InputHelper.lerDouble("Preço: ");
-            if (preco <= 0) throw new IllegalArgumentException("[ O preço deve ser maior que zero ]");
+            if (preco <= 0) throw new IllegalArgumentException("O preço deve ser maior que zero");
             break;
 
         } catch (Exception e) {
@@ -101,7 +100,7 @@ public class ProdutoController {
     while (true) {
         try {
             quantidade = InputHelper.lerInt("Quantidade: ");
-            if (quantidade < 0) throw new IllegalArgumentException("[ A quantidade não pode ser negativa ]");
+            if (quantidade < 0) throw new IllegalArgumentException("A quantidade não pode ser negativa");
             break;
 
         } catch (Exception e) {
