@@ -79,3 +79,15 @@ Classes responsáveis por gerenciar as regras de negócio, como cadastro, listag
 ## 6. Observações Finais
 
 Este projeto foi desenvolvido para fins acadêmicos, com foco na prática dos conceitos de Programação Orientada a Objetos, organização do código e boas práticas de desenvolvimento.
+
+## 👥 Integrantes do Grupo
+
+- Alisson Ricarte – Matrícula: 2023022969
+- Mateus Kaynan – Matrícula: 2023022797
+- Mateus Pinheiro – Matrícula: 2023023130
+- Marcelo Marques – Matrícula: 2024010317
+- Sara Vitória – Matrícula: 2023022619
+- Ana Vitória – Matrícula: 2023022758
+- Laura Gonçalves – Matrícula: 2023022621  
+
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=110&color=666666&section=footer&reversal=false"/>
