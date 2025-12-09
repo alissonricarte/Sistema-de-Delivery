@@ -98,6 +98,7 @@ Sistema-de-Delivery/                    # PROJETO PRINCIPAL
 ├── LICENSE                             # LICENÇA DO PROJETO
 └── Sistema-de-Delivery.iml             # CONFIGURAÇÃO DO PROJETO (IntelliJ IDEA)
 ```
+**📖 Para documentação completa:** [Clique aqui](./doc/documentacao.md)
 
 ## ▶️ Como Executar o Projeto
 ✔️ Via Terminal (Linux/Windows)
