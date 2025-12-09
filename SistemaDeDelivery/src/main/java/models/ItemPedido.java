@@ -1,6 +1,6 @@
-package main.java.models.pedidos;
+package main.java.models;
 
-import main.java.models.produtos.Produto;
+import main.java.models.abstratos.Produto;
 
 public class ItemPedido {
 
@@ -21,34 +21,18 @@ public class ItemPedido {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
-        if (produto == null)
-            throw new IllegalArgumentException("Produto não pode ser nulo");
-        this.produto = produto;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        if (quantidade <= 0)
-            throw new IllegalArgumentException("Quantidade deve ser maior que 0");
-        this.quantidade = quantidade;
-    }
-
-    /**
-     * Retorna o subtotal do item:
-     * preço do produto × quantidade
-     */
     public double getSubtotal() {
         return produto.getPreco() * quantidade;
     }
 
     @Override
     public String toString() {
-        return produto.getNome() +
-                " x" + quantidade +
-                " — Subtotal: R$ " + String.format("%.2f", getSubtotal());
+        return "[" + produto.getId() + "] " + produto.getNome() +
+                " x " + quantidade +
+                " | Subtotal: R$ " + String.format("%.2f", getSubtotal());
     }
 }

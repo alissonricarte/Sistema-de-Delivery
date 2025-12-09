@@ -1,51 +1,63 @@
 package main.java.models.abstratos;
 
+import main.java.utils.Validacao;
+
 public abstract class Pessoa {
     private String nome;
     private String cpf;
     private String telefone;
     private String email;
 
-    public Pessoa(String nome, String cpf, String telefone,String email){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.email = email;
+    public Pessoa(String nome, String cpf, String telefone, String email){
+        setNome(nome);
+        setCpf(cpf);
+        setTelefone(telefone);
+        setEmail(email);
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public String getCpf() {
-        return cpf;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-    public String getEmail() {
-        return email;
-    }
+    public String getNome() { return nome; }
+    public String getCpf() { return cpf; }
+    public String getTelefone() { return telefone; }
+    public String getEmail() { return email; }
+
     public void setNome(String nome) {
-        this.nome = nome;
+    if (nome == null || nome.trim().isEmpty()) {
+        throw new IllegalArgumentException("Nome não pode ser vazio.");
     }
+
+    nome = nome.trim().replaceAll(" +", " ");
+
+    if (!nome.matches("^[\\p{L} ]+$")) {
+        throw new IllegalArgumentException("O nome deve conter apenas letras e espaços.");
+    }
+
+    this.nome = nome;
+}
+
+
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        if (!Validacao.validarCPF(cpf))
+            throw new IllegalArgumentException("CPF inválido.");
+        this.cpf = cpf.replaceAll("[^0-9]", "");
     }
     public void setTelefone(String telefone) {
+        if (!Validacao.validarTelefone(telefone))
+            throw new IllegalArgumentException("Telefone inválido.");
         this.telefone = telefone;
     }
     public void setEmail(String email) {
-    if (email != null && email.contains("@")) {
+        if (!Validacao.validarEmail(email))
+            throw new IllegalArgumentException("Email inválido.");
         this.email = email;
-    } else {
-        System.out.println("E-mail inválido!");
-    } 
-    
     }
+
     public abstract void exibirDados();
-    protected boolean validarDadosBasicos() {
-        return nome != null && !nome.trim().isEmpty() &&
-                cpf != null && cpf.matches("\\d{11}") &&
-                email != null && email.contains("@");
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome +
+                "\nCPF: " + cpf +
+                "\nTelefone: " + telefone +
+                "\nEmail: " + email;
     }
 }
