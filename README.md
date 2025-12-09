@@ -151,3 +151,46 @@ Sistema-de-Delivery/                      # Pasta raiz do projeto
 </div>
 
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=110&color=F9F9F4&section=footer&reversal=false"/>
+
+
+
+---
+
+## ▶️ Como Baixar e Executar o Projeto
+
+### ✅ Opção 1 – Baixar pelo GitHub (Sem usar terminal)
+
+1. Acesse o repositório:
+
+https://github.com/alissonricarte/Sistema-de-Delivery
+
+2. Clique em **Code**
+3. Clique em **Download ZIP**
+4. Extraia o arquivo no seu computador
+5. Abra a pasta no **VS Code** ou **IntelliJ**
+6. Execute a classe `Main.java`
+
+---
+
+### ✅ Opção 2 – Baixar pelo Terminal (Usando Git)
+
+```bash
+git clone https://github.com/alissonricarte/Sistema-de-Delivery.git
+cd Sistema-de-Delivery
+
+Abra no VS Code:
+
+code .
+
+Depois execute a classe Main.java.
+
+
+## 👥 Integrantes do Grupo
+
+- Alisson Ricarte – Matrícula: 2023022969 
+- Mateus Kaynan – Matrícula: 2023022797  
+- Mateus Pinheiro – Matrícula: XXXXXXX  
+- Marcelo Marques – Matrícula: 2024010317
+- Sara Vitória – Matrícula: 2023022619 
+- Ana Vitória – Matrícula: 2023022758 
+- Laura Gonçalves – Matrícula: 2023022621  
